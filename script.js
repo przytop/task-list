@@ -6,6 +6,10 @@
     { id: 2, name: "Do the laundry", done: false },
     { id: 3, name: "Walk the dog", done: true },
   ];
+  let hideDoneTasks = false;
+
+  const hideButton = document.querySelector(".tasks__button--hide");
+  const finishButton = document.querySelector(".tasks__button--finish");
 
   const addTask = (taskName) => {
     const newTask = {
@@ -30,6 +34,16 @@
     render();
   };
 
+  const setAllTasksDone = () => {
+    tasks = tasks.map((task) => ({ ...task, done: true }));
+    render();
+  };
+
+  const hideAllTasksDone = () => {
+    hideDoneTasks = !hideDoneTasks;
+    render();
+  };
+
   const onFormSubmit = (e) => {
     e.preventDefault();
 
@@ -43,10 +57,43 @@
     input.focus();
   };
 
+  const toggleTasksButtonsVisability = () => {
+    const tasksButtons = document.querySelectorAll(".tasks__button");
+
+    tasksButtons.forEach((button) =>
+      tasks.length > 0
+        ? button.classList.remove("tasks__button--hidden")
+        : button.classList.add("tasks__button--hidden")
+    );
+  };
+
+  const updateHideButtonState = () => {
+    tasks.every((task) => !task.done)
+      ? hideButton.setAttribute("disabled", "true")
+      : hideButton.removeAttribute("disabled");
+
+    hideButton.textContent =
+      hideDoneTasks === true ? "Show completed" : "Hide completed";
+  };
+
+  const updateFinishButtonState = () => {
+    tasks.every((task) => task.done)
+      ? finishButton.setAttribute("disabled", "true")
+      : finishButton.removeAttribute("disabled");
+  };
+
   const bindFormButtonListener = () => {
     const form = document.querySelector(".form");
 
     form.addEventListener("submit", onFormSubmit);
+  };
+
+  const hideAllDoneTasksListener = () => {
+    hideButton.addEventListener("click", hideAllTasksDone);
+  };
+
+  const finishAllTasksListener = () => {
+    finishButton.addEventListener("click", setAllTasksDone);
   };
 
   const bindTaskButtonsListeners = () => {
@@ -70,8 +117,11 @@
 
   const renderTasks = () => {
     const tasksList = document.querySelector(".tasks__list");
+    const filteredTasks = hideDoneTasks
+      ? tasks.filter((task) => !task.done)
+      : tasks;
 
-    tasksList.innerHTML = tasks
+    tasksList.innerHTML = filteredTasks
       .map(
         (task) => `
         <li class="task__element">
@@ -92,14 +142,21 @@
     bindTaskButtonsListeners();
   };
 
-  const renderButtons = () => {};
+  const renderButtons = () => {
+    toggleTasksButtonsVisability();
+    updateHideButtonState();
+    updateFinishButtonState();
+  };
 
   const bindListeners = () => {
     bindFormButtonListener();
+    hideAllDoneTasksListener();
+    finishAllTasksListener();
   };
 
   const render = () => {
     renderTasks();
+    renderButtons();
     bindListeners();
   };
 
