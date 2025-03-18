@@ -1,0 +1,156 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(238 238 238);
+}
+
+h1,
+h2 {
+  color: teal;
+  margin: 10px 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 40px;
+}
+
+.form__container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section__header {
+  border-bottom: 1px solid teal;
+}
+
+.section__header--tasks {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.form__input {
+  padding: 10px;
+  border: 1px solid teal;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.form__button {
+  padding: 10px 20px;
+  background-color: teal;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.5s;
+}
+
+.form__button:hover,
+.form__button:focus {
+  background-color: hsl(180, 100%, 35%);
+  transform: scale(1.05);
+}
+
+.tasks__container {
+  margin-top: 20px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-wrap: anywhere;
+}
+
+.tasks__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.tasks__button {
+  border: none;
+  background-color: inherit;
+  color: teal;
+  transition: 0.5s;
+  padding: 10px;
+}
+
+.tasks__button:hover,
+.tasks__button:focus {
+  color: hsl(180, 100%, 45%);
+}
+
+.tasks__button:disabled {
+  color: hsl(0, 0%, 70%);
+}
+
+.tasks__button--hidden {
+  display: none;
+}
+
+.tasks__list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.task__element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid teal;
+  gap: 5px;
+}
+
+.task__text {
+  flex-grow: 1;
+}
+
+.task__text--done {
+  text-decoration: line-through;
+}
+
+.task__button {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .form {
+    flex-direction: row;
+  }
+
+  .form__button {
+    flex-grow: 1;
+    max-width: 150px;
+  }
+
+  .section__header--tasks {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tasks__buttons {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .task__element {
+    gap: 10px;
+  }
+}
