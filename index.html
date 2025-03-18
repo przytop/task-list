@@ -1,11 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task list</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
+      integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./script.js"></script>
+  </head>
+
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1>Task list</h1>
+      </header>
+      <section class="form__container">
+        <div class="section__header">
+          <h2>Add new task</h2>
+        </div>
+        <form class="form">
+          <input
+            class="form__input"
+            type="text"
+            placeholder="What needs to be done?"
+          />
+          <button class="form__button">Add task</button>
+        </form>
+      </section>
+
+      <section class="tasks__container">
+        <div class="section__header section__header--tasks">
+          <h2>Task list</h2>
+          <div class="tasks__buttons">
+            <button
+              class="tasks__button tasks__button--hide tasks__button--hidden"
+            >
+              Hide completed
+            </button>
+            <button
+              class="tasks__button tasks__button--finish tasks__button--hidden"
+            >
+              Finish all
+            </button>
+          </div>
+        </div>
+        <ul class="tasks__list"></ul>
+      </section>
+    </main>
+  </body>
 </html>
