@@ -11,6 +11,19 @@
   const hideButton = document.querySelector(".tasks__button--hide");
   const finishButton = document.querySelector(".tasks__button--finish");
 
+  const saveTasks = () => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
+  const loadTasks = () => {
+    const savedTasks = localStorage.getItem("tasks");
+    try {
+      tasks = JSON.parse(savedTasks) || tasks;
+    } catch (e) {
+      tasks = [];
+    }
+  };
+
   const addTask = (taskName) => {
     const newTask = {
       id: tasks.length ? tasks[tasks.length - 1].id + 1 : 1,
@@ -158,9 +171,11 @@
     renderTasks();
     renderButtons();
     bindListeners();
+    saveTasks();
   };
 
   const init = () => {
+    loadTasks();
     render();
   };
 
