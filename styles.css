@@ -97,10 +97,6 @@ h2 {
   color: hsl(0, 0%, 70%);
 }
 
-.tasks__button--hidden {
-  display: none;
-}
-
 .tasks__list {
   list-style-type: none;
   padding: 0;
