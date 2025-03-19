@@ -67,47 +67,6 @@
     input.focus();
   };
 
-  const formButtonListener = () => {
-    const form = document.querySelector(".form");
-
-    form.addEventListener("submit", onFormSubmit);
-  };
-
-  const hideAllDoneTasksListener = () => {
-    const hideButton = document.querySelector(".tasks__button--hide");
-
-    if (hideButton) {
-      hideButton.addEventListener("click", hideAllTasksDone);
-    }
-  };
-
-  const finishAllTasksListener = () => {
-    const finishButton = document.querySelector(".tasks__button--finish");
-
-    if (finishButton) {
-      finishButton.addEventListener("click", setAllTasksDone);
-    }
-  };
-
-  const taskButtonsListeners = () => {
-    const toggleButtons = document.querySelectorAll(".task__button--toggle");
-    const removeButtons = document.querySelectorAll(".task__button--remove");
-
-    toggleButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const taskId = Number(button.dataset.id);
-        toggleTask(taskId);
-      });
-    });
-
-    removeButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const taskId = Number(button.dataset.id);
-        removeTask(taskId);
-      });
-    });
-  };
-
   const renderTasks = () => {
     const tasksList = document.querySelector(".tasks__list");
     const filteredTasks = hideDoneTasks
@@ -158,10 +117,35 @@
   };
 
   const bindListeners = () => {
-    formButtonListener();
-    taskButtonsListeners();
-    hideAllDoneTasksListener();
-    finishAllTasksListener();
+    const form = document.querySelector(".form");
+    const hideButton = document.querySelector(".tasks__button--hide");
+    const finishButton = document.querySelector(".tasks__button--finish");
+    const toggleButtons = document.querySelectorAll(".task__button--toggle");
+    const removeButtons = document.querySelectorAll(".task__button--remove");
+
+    form.addEventListener("submit", onFormSubmit);
+
+    if (hideButton) {
+      hideButton.addEventListener("click", hideAllTasksDone);
+    }
+
+    if (finishButton) {
+      finishButton.addEventListener("click", setAllTasksDone);
+    }
+
+    toggleButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const taskId = Number(button.dataset.id);
+        toggleTask(taskId);
+      });
+    });
+
+    removeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const taskId = Number(button.dataset.id);
+        removeTask(taskId);
+      });
+    });
   };
 
   const render = () => {
